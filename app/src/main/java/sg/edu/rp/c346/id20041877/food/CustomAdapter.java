@@ -34,6 +34,7 @@ public class CustomAdapter extends ArrayAdapter {
 
         View rowView = inflater.inflate(layout_id, parent, false);
 
+
         TextView tvName = rowView.findViewById(R.id.textViewName);
         TextView tvLocation = rowView.findViewById(R.id.textViewLocation);
         TextView tvComment = rowView.findViewById(R.id.textViewComment);
@@ -45,6 +46,8 @@ public class CustomAdapter extends ArrayAdapter {
         tvComment.setText(FoodItem.getComment());
 
 
+        rating.setClickable(false);
+        rating.setRating(FoodItem.getStars());
 
         return rowView;
     }

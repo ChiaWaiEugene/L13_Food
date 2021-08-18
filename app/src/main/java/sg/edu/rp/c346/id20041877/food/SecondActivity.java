@@ -38,11 +38,11 @@ public class SecondActivity extends AppCompatActivity {
         lv = (ListView) this.findViewById(R.id.listView2);
         btn5Stars = (Button) this.findViewById(R.id.buttonShow5Stars);
 
-        tvID = (TextView) this.findViewById(R.id.textViewID);
+        //tvID = (TextView) this.findViewById(R.id.textViewID);
         tvName = (TextView) this.findViewById(R.id.textViewName);
         tvLocation = (TextView) this.findViewById(R.id.textViewLocation);
         tvComment = (TextView) this.findViewById(R.id.textViewComment);
-        ratingStars = (RatingBar) findViewById(R.id.ratingBar1);
+        ratingStars = (RatingBar) findViewById(R.id.ratingStars);
 
         DBHelper dbh = new DBHelper(this);
         FoodList = dbh.getAllFood();
@@ -63,17 +63,22 @@ public class SecondActivity extends AppCompatActivity {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View viewDialog = inflater.inflate(R.layout.edit, null);
 
+                //final EditText etID = viewDialog.findViewById(R.id.textViewID);
                 final EditText etName = viewDialog.findViewById(R.id.editTextName);
                 final EditText etLocation = viewDialog.findViewById(R.id.editTextLocation);
                 final EditText etComment = viewDialog.findViewById(R.id.editTextComment);
-                final RatingBar rstars = viewDialog.findViewById(R.id.ratingStars);
+                final RatingBar rstars = viewDialog.findViewById(R.id.ratingBar1);
 
                 AlertDialog.Builder myBuilder = new AlertDialog.Builder(SecondActivity.this);
                 myBuilder.setView(viewDialog);
                 myBuilder.setTitle("Edit Food Ratings");
 
+                //etID.setText(FoodList.get(position).getId());
+                etName.setText(FoodList.get(position).getName());
+                etLocation.setText(FoodList.get(position).getLocation());
+                etComment.setText(FoodList.get(position).getComment());
+                rstars.setRating(FoodList.get(position).getStars());
 
-                ratingStars.setRating(FoodList.get(position).getStars());
 
                 myBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
